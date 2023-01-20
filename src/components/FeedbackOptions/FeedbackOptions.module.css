@@ -1,0 +1,19 @@
+ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+}
+
+.button {
+  width: 70px;
+  text-transform: capitalize;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid lightslategray;
+  border-radius: 2px;
+}
+
+.button:hover {
+  background-color: orange;
+}

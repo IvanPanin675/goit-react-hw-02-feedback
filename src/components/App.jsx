@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Section from './Section/Section';
+import Notification from 'components/Notification/Notification';
 
 class App extends Component {
   state = {
@@ -22,15 +24,15 @@ class App extends Component {
     }
     const value = this.state.good;
     const result = ((value / total) * 100).toFixed(0);
-    
+
     return result;
   }
 
-  leaveFeedback = (name) => {
+  leaveFeedback = name => {
     this.setState(prevState => {
       return { [name]: prevState[name] + 1 };
     });
-  }
+  };
 
   render() {
     const { good, neutral, bad } = this.state;
@@ -39,15 +41,26 @@ class App extends Component {
 
     return (
       <>
-        <FeedbackOptions options={this.state} onLeaveFeedback={this.leaveFeedback}></FeedbackOptions>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.leaveFeedback}
+          ></FeedbackOptions>
+        </Section>
 
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={positivePercent}
-        ></Statistics>
+        {Boolean(total) && (
+          <Section title="Statistics">
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercent}
+            ></Statistics>
+          </Section>
+        )}
+
+        {Boolean(!total) && <Notification message="There is no feedback" />}
       </>
     );
   }

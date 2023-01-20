@@ -1,0 +1,8 @@
+.section {
+  display: block;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: bisque;
+  padding: 10px 20px;
+}

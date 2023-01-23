@@ -48,7 +48,7 @@ class App extends Component {
           ></FeedbackOptions>
         </Section>
 
-        {Boolean(total) && (
+        {Boolean(total) ? 
           <Section title="Statistics">
             <Statistics
               good={good}
@@ -58,9 +58,8 @@ class App extends Component {
               positivePercentage={positivePercent}
             ></Statistics>
           </Section>
-        )}
-
-        {Boolean(!total) && <Notification message="There is no feedback" />}
+        :
+        <Notification message="There is no feedback" />}
       </>
     );
   }

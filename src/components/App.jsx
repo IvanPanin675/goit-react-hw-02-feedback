@@ -48,7 +48,7 @@ class App extends Component {
           ></FeedbackOptions>
         </Section>
 
-        {Boolean(total) ? 
+        {total ? 
           <Section title="Statistics">
             <Statistics
               good={good}
